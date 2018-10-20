@@ -4,7 +4,7 @@ from trans_model import trans_model as model
 import argparse
 import cPickle
 
-DATASET = 'citeseer'
+DATASET = 'nell.0.01'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--learning_rate', help = 'learning rate for supervised loss', type = float, default = 0.1)
@@ -17,11 +17,11 @@ parser.add_argument('--g_sample_size', help = 'batch size for label context loss
 parser.add_argument('--neg_samp', help = 'negative sampling rate; zero means using softmax', type = int, default = 0)
 parser.add_argument('--g_learning_rate', help = 'learning rate for unsupervised loss', type = float, default = 1e-2)
 parser.add_argument('--model_file', help = 'filename for saving models', type = str, default = 'trans.model')
-parser.add_argument('--use_feature', help = 'whether use input features', type = bool, default = True)
+parser.add_argument('--use_feature', help = 'whether use input features', action='store_true')
 parser.add_argument('--update_emb', help = 'whether update embedding when optimizing supervised loss', type = bool, default = True)
 parser.add_argument('--layer_loss', help = 'whether incur loss on hidden layers', type = bool, default = True)
 args = parser.parse_args()
-
+print(args)
 def comp_accu(tpy, ty):
     import numpy as np
     return (np.argmax(tpy, axis = 1) == np.argmax(ty, axis = 1)).sum() * 1.0 / tpy.shape[0]

@@ -32,6 +32,7 @@ class trans_model(base_model):
         """build the model. This method should be called after self.add_data.
         """
         x_sym = sparse.csr_matrix('x', dtype = 'float32')
+        # imatrix: matrix of int32 type
         y_sym = T.imatrix('y')
         g_sym = T.imatrix('g')
         gy_sym = T.vector('gy')
@@ -93,6 +94,7 @@ class trans_model(base_model):
         """generator for batches for classification loss.
         """
         while True:
+            # shuffle [0, 1, ..., self.x.shape[0]]
             ind = np.array(np.random.permutation(self.x.shape[0]), dtype = np.int32)
             i = 0
             while i < ind.shape[0]:
@@ -103,6 +105,9 @@ class trans_model(base_model):
     def gen_label_graph(self):
         """generator for batches for label context loss.
         """
+        # labels: a list of instance ID
+        # label2inst: a dictionary of which key is the ID of class, value is a list of instance ID
+        # not_label: complementary to label2inst
         labels, label2inst, not_label = [], dd(list), dd(list)
         for i in range(self.x.shape[0]):
             flag = False
@@ -116,6 +121,7 @@ class trans_model(base_model):
 
         while True:
             g, gy = [], []
+            # g_sample_size: 'batch size for label context loss'
             for _ in range(self.g_sample_size):
                 x1 = random.randint(0, self.x.shape[0] - 1)
                 label = labels[x1]

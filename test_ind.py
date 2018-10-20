@@ -4,7 +4,7 @@ from ind_model import ind_model as model
 import argparse
 import cPickle
 
-DATASET = 'citeseer'
+DATASET = 'nell.0.01'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--learning_rate', help = 'learning rate for supervised loss', type = float, default = 0.1)
@@ -21,6 +21,7 @@ parser.add_argument('--use_feature', help = 'whether use input features', type =
 parser.add_argument('--update_emb', help = 'whether update embedding when optimizing supervised loss', type = bool, default = True)
 parser.add_argument('--layer_loss', help = 'whether incur loss on hidden layers', type = bool, default = True)
 args = parser.parse_args()
+print(args)
 
 def comp_accu(tpy, ty):
     import numpy as np
