@@ -4,7 +4,7 @@ from trans_model import trans_model as model
 import argparse
 import cPickle
 
-DATASET = 'nell.0.01'
+DATASET = 'nell.0.001'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--learning_rate', help = 'learning rate for supervised loss', type = float, default = 1.0)
