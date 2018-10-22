@@ -37,6 +37,7 @@ m = model(args)                                             # initialize the mod
 m.add_data(x, y, graph)                                     # add data
 m.build()                                                   # build the model
 # m.init_train(init_iter_label = 2000, init_iter_graph = 70)  # pre-training
+
 m.load_params()
 # m.init_train(init_iter_label = 0, init_iter_graph = 1400)
 iter_cnt, max_accu = 0, 0
