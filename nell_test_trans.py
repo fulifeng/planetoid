@@ -38,8 +38,8 @@ m.add_data(x, y, graph)                                     # add data
 m.build()                                                   # build the model
 # m.init_train(init_iter_label = 2000, init_iter_graph = 70)  # pre-training
 
-# m.load_params()
-m.init_train(init_iter_label = 0, init_iter_graph = 1400)
+m.load_params()
+# m.init_train(init_iter_label = 0, init_iter_graph = 1400)
 iter_cnt, max_accu = 0, 0
 while True:
     # m.step_train(max_iter = 1, iter_graph = 0, iter_inst = 1, iter_label = 0)   # perform a training step
