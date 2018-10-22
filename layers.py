@@ -44,6 +44,8 @@ class DenseLayer(lasagne.layers.Layer):
         else:
             return T.exp(activation) / (T.exp(activation).sum(1, keepdims = True))
 
+
+# Here, incoming is a sparse matrix
 class SparseLayer(lasagne.layers.Layer):
 
     def __init__(self, incoming, num_units, W = lasagne.init.GlorotUniform(), b = lasagne.init.Constant(0.), nonlinearity = lasagne.nonlinearities.rectify, **kwargs):

@@ -88,6 +88,8 @@ class trans_model(base_model):
 
         g_params = lasagne.layers.get_all_params(l_gy, trainable = True)
         g_updates = lasagne.updates.sgd(g_loss, g_params, learning_rate = self.g_learning_rate)
+
+        # iteration to update parameters of graph embedding branch
         self.g_fn = theano.function([g_sym, gy_sym], g_loss, updates = g_updates, on_unused_input = 'ignore')
 
     def gen_train_inst(self):
